@@ -33,9 +33,34 @@ public class SolveMaze {
          * You should be able to solve a 10 x 10 maze in (far fewer than) 1000 steps.
          * Feel free to adjust this number if you experiment with other mazes.
          */
+        /* Deterministic Method - Wall following
         for (int step = 0; step < 1000; step++) {
             // Implement your maze solving algorithm here
+            while (!maze.isFinished()) {
+                maze.turnLeft();
+                while (!maze.canMove()) {
+                    maze.turnRight();
+                }
+                maze.move();
+            }
         }
+        */
+        for (int step = 0; step < 5000000; step++) {
+            // Implement your maze solving algorithm here
+            while (!maze.isFinished()) {
+                while (maze.canMove()) {
+                    maze.move();
+                }
+                double random = Math.random() * 11;
+                if (random <= 5) {
+                    maze.turnRight();
+                }
+                else {
+                    maze.turnLeft();
+                }
+            }
+        }
+
 
         if (maze.isFinished()) {
             System.out.println("You solved the maze!");
